@@ -10,5 +10,10 @@
             <label>Enable</label>
             <label lang="de-DE">Aktivieren</label>
         </input-field>
+        <component name="eins-und-eins-config-mapping">
+            <name>statusmapping</name>
+            <label>Schema.Org Status Mapping</label>
+            <label lang="de-DE">Schema.Org Status Mapping</label>
+        </component>
     </card>
 </config>

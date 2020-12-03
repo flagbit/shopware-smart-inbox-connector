@@ -1,0 +1,24 @@
+{% block eins_und_eins_config_mapping %}
+    <div>
+        <table class="sw-data-grid__table">
+            <tbody class="sw-data-grid__body">
+            <template v-for="state in states">
+                <tr class="sw-data-grid__row">
+                    <td class="sw-data-grid__cell">{{ state.value }}</td>
+                    <td class="sw-data-grid__cell">
+                        <sw-single-select
+                                size="medium"
+                                :key="state.key"
+                                :options="options"
+                                class="sw-condition-type-select__select"
+                                placeholder="Schema.Org states"
+                                @change="state.onSelect"
+                                :value="state.selection"
+                        ></sw-single-select>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
