@@ -2,9 +2,7 @@
 
 namespace EinsUndEins\PluginTransactionMailExtender\Mapping;
 
-use EinsUndEins\SchemaOrgMailBody\Model\OrderInterface;
-
-class StatusMapping implements Mapping
+class StateMapping implements Mapping
 {
     /**
      * @var array<string, string>

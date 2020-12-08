@@ -12,14 +12,14 @@
             <argument type="service" id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" />
         </service>
 
-        <service id="EinsUndEins\PluginTransactionMailExtender\Mapping\StatusMapping" autowire="true" />
+        <service id="EinsUndEins\PluginTransactionMailExtender\Mapping\StateMapping" autowire="true" />
 
         <service id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" autowire="true" />
 
         <service alias="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer"
             id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\Renderer" />
 
-        <service alias="EinsUndEins\PluginTransactionMailExtender\Mapping\StatusMapping"
+        <service alias="EinsUndEins\PluginTransactionMailExtender\Mapping\StateMapping"
             id="EinsUndEins\PluginTransactionMailExtender\Mapping\Mapping"/>
     </services>
 </container>
