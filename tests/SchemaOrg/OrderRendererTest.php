@@ -10,6 +10,7 @@ use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryEntity;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Checkout\Shipping\ShippingMethodEntity;
 use Shopware\Core\System\StateMachine\Aggregation\StateMachineState\StateMachineStateEntity;
+use Shopware\Core\System\StateMachine\StateMachineEntity;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class OrderRendererTest extends TestCase
@@ -29,8 +30,10 @@ class OrderRendererTest extends TestCase
     {
         $this->mapping = $this->createMock(Mapping::class);
         $this->mapping->method('getValueBy')
-            ->with('orderstate')
-            ->willReturn('OrderDelivered');
+            ->willReturnMap([
+                ['parent_state-orderstate', 'OrderDelivered'],
+                ['parent_state-deliverystate', 'OrderDelivered'],
+            ]);
 
         $this->config = $this->createMock(SystemConfigService::class);
     }
@@ -66,10 +69,15 @@ class OrderRendererTest extends TestCase
 
     private function createOrder(array $deliveries): OrderEntity
     {
-        $stateMachineState = $this->createStub(StateMachineStateEntity::class);
+        $stateMachine = $this->createStub(StateMachineEntity::class);
+        $stateMachine->method('getTechnicalName')
+            ->willReturn('parent_state');
 
+        $stateMachineState = $this->createStub(StateMachineStateEntity::class);
         $stateMachineState->method('getTechnicalName')
             ->willReturn('orderstate');
+        $stateMachineState->method('getStateMachine')
+            ->willReturn($stateMachine);
 
         $order = $this->createStub(OrderEntity::class);
 
@@ -89,9 +97,18 @@ class OrderRendererTest extends TestCase
     private function createDelivery(string $deliveryName): OrderDeliveryEntity
     {
         $shippingMethod = $this->createStub(ShippingMethodEntity::class);
-
         $shippingMethod->method('getName')
             ->willReturn($deliveryName);
+
+        $stateMachine = $this->createStub(StateMachineEntity::class);
+        $stateMachine->method('getTechnicalName')
+            ->willReturn('parent_state');
+
+        $stateMachineState = $this->createStub(StateMachineStateEntity::class);
+        $stateMachineState->method('getTechnicalName')
+            ->willReturn('deliverystate');
+        $stateMachineState->method('getStateMachine')
+            ->willReturn($stateMachine);
 
         $delivery = $this->createStub(OrderDeliveryEntity::class);
 
@@ -103,6 +120,9 @@ class OrderRendererTest extends TestCase
 
         $delivery->method('getUniqueIdentifier')
             ->willReturn($deliveryName);
+
+        $delivery->method('getStateMachineState')
+            ->willReturn($stateMachineState);
 
         return $delivery;
     }
