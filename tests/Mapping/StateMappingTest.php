@@ -2,31 +2,41 @@
 
 namespace EinsUndEins\PluginTransactionMailExtender\Tests\Mapping;
 
+use EinsUndEins\PluginTransactionMailExtender\Mapping\Mapping;
 use EinsUndEins\PluginTransactionMailExtender\Mapping\StateMapping;
 use PHPUnit\Framework\TestCase;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class StateMappingTest extends TestCase
 {
     /**
-     * @dataProvider provideMappings
+     * @var \PHPUnit\Framework\MockObject\MockObject&SystemConfigService
      */
-    public function testGetValueBy(string $mappingKey, string $expected): void
-    {
-        $mapping = new StateMapping();
+    private $config;
 
-        self::assertSame($expected, $mapping->getValueBy($mappingKey));
+    protected function setUp(): void
+    {
+        $this->config = $this->createMock(SystemConfigService::class);
+        $this->config->expects(self::once())
+            ->method('get')
+            ->with('TransactionMailExtender.config.statusmapping')
+            ->willReturn([
+                'parent.state-state1' => 'state1',
+                'parent.state-state2' => 'state2',
+                ]);
     }
 
-    public function provideMappings(): array
+    public function testGetValueBy(): void
     {
-        return [
-            ['cancelled', 'OrderCancelled'],
-            ['completed', 'OrderDelivered'],
-            ['shipped', 'OrderInTransit'],
-            ['open', 'OrderPaymentDue'],
-            ['in_progress', 'OrderProcessing'],
-            ['returned', 'OrderReturned'],
-            ['UnknownMappingKey', ''],
-        ];
+        $mapping = new StateMapping($this->config);
+
+        self::assertSame('state2', $mapping->getValueBy('parent.state-state2'));
+    }
+
+    public function testDefaultIfStateNotFound(): void
+    {
+        $mapping = new StateMapping($this->config);
+
+        self::assertSame('OrderProcessing', $mapping->getValueBy('unknown'));
     }
 }

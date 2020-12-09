@@ -2,36 +2,22 @@
 
 namespace EinsUndEins\PluginTransactionMailExtender\Mapping;
 
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+
 class StateMapping implements Mapping
 {
     /**
-     * @var array<string, string>
+     * @var SystemConfigService
      */
-    private $map;
+    private $configService;
 
-    public function __construct()
+    public function __construct(SystemConfigService $configService)
     {
-        // Temporary solution
-        $map = [
-            'OrderCancelled' => 'cancelled',
-            'OrderDelivered' => 'completed',
-            'OrderInTransit' => 'shipped',
-            'OrderPaymentDue' => 'open',
-            'OrderPickupAvailable' => '',
-            'OrderProblem' => '',
-            'OrderProcessing' => 'in_progress',
-            'OrderReturned' => 'returned',
-        ];
-
-        $this->map = array_flip($map);
+        $this->configService = $configService->get('TransactionMailExtender.config.statusmapping') ?? [];
     }
 
     public function getValueBy(string $key): string
     {
-        if (isset($this->map[$key])) {
-            return $this->map[$key];
-        }
-
-        return '';
+        return $this->configService[$key] ?? 'OrderProcessing';
     }
 }
