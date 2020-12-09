@@ -2,7 +2,7 @@
 
 namespace EinsUndEins\PluginTransactionMailExtender\Tests\Renderer;
 
-use EinsUndEins\PluginTransactionMailExtender\Mapping\Mapping;
+use EinsUndEins\PluginTransactionMailExtender\StateMapping\Mapper;
 use EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryCollection;
@@ -10,13 +10,12 @@ use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryEntity;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Checkout\Shipping\ShippingMethodEntity;
 use Shopware\Core\System\StateMachine\Aggregation\StateMachineState\StateMachineStateEntity;
-use Shopware\Core\System\StateMachine\StateMachineEntity;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class OrderRendererTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&Mapping
+     * @var \PHPUnit\Framework\MockObject\MockObject&Mapper
      */
     private $mapping;
 
@@ -28,13 +27,7 @@ class OrderRendererTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->mapping = $this->createMock(Mapping::class);
-        $this->mapping->method('getValueBy')
-            ->willReturnMap([
-                ['parent_state-orderstate', 'OrderDelivered'],
-                ['parent_state-deliverystate', 'OrderDelivered'],
-            ]);
-
+        $this->mapping = $this->createMock(Mapper::class);
         $this->config = $this->createMock(SystemConfigService::class);
     }
 
@@ -69,15 +62,7 @@ class OrderRendererTest extends TestCase
 
     private function createOrder(array $deliveries): OrderEntity
     {
-        $stateMachine = $this->createStub(StateMachineEntity::class);
-        $stateMachine->method('getTechnicalName')
-            ->willReturn('parent_state');
-
         $stateMachineState = $this->createStub(StateMachineStateEntity::class);
-        $stateMachineState->method('getTechnicalName')
-            ->willReturn('orderstate');
-        $stateMachineState->method('getStateMachine')
-            ->willReturn($stateMachine);
 
         $order = $this->createStub(OrderEntity::class);
 
@@ -91,6 +76,15 @@ class OrderRendererTest extends TestCase
         $order->method('getDeliveries')
             ->willReturn($deliveryCollection);
 
+        $returnMap = [[$stateMachineState, 'OrderDelivered']];
+
+        foreach ($deliveries as $delivery) {
+            $returnMap[] = [$delivery->getStateMachineState(), 'OrderDelivered'];
+        }
+
+        $this->mapping->method('getValueBy')
+            ->willReturnMap($returnMap);
+
         return $order;
     }
 
@@ -100,16 +94,6 @@ class OrderRendererTest extends TestCase
         $shippingMethod->method('getName')
             ->willReturn($deliveryName);
 
-        $stateMachine = $this->createStub(StateMachineEntity::class);
-        $stateMachine->method('getTechnicalName')
-            ->willReturn('parent_state');
-
-        $stateMachineState = $this->createStub(StateMachineStateEntity::class);
-        $stateMachineState->method('getTechnicalName')
-            ->willReturn('deliverystate');
-        $stateMachineState->method('getStateMachine')
-            ->willReturn($stateMachine);
-
         $delivery = $this->createStub(OrderDeliveryEntity::class);
 
         $delivery->method('getTrackingCodes')
@@ -118,11 +102,14 @@ class OrderRendererTest extends TestCase
         $delivery->method('getShippingMethod')
             ->willReturn($shippingMethod);
 
+        // Internally used by OrderDeliveryCollection to hash every entry
         $delivery->method('getUniqueIdentifier')
             ->willReturn($deliveryName);
 
         $delivery->method('getStateMachineState')
-            ->willReturn($stateMachineState);
+            ->willReturn(
+                $this->createStub(StateMachineStateEntity::class)
+            );
 
         return $delivery;
     }
