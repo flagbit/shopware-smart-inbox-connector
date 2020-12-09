@@ -94,6 +94,6 @@ Shopware.Component.register('eins-und-eins-config-mapping', {
             {label: 'OrderReturned', value: 'OrderReturned'},
         ];
 
-        return { states: {}, options: options };
+        return { states: {}, options: options, label: this.$attrs.label };
     },
 });

@@ -9,6 +9,8 @@
             <name>enable</name>
             <label>Enable</label>
             <label lang="de-DE">Aktivieren</label>
+            <helpText>Enables the Schema.org HTML appendage. Please configure the possible order states below before you enable it.</helpText>
+            <helpText lang="de-DE">Aktiviert die Schema.org HTML Anfügung. Bitte stellen Sie vorher die Bestell-Status ein bevor Sie dies aktivieren.</helpText>
         </input-field>
         <component name="eins-und-eins-config-mapping">
             <name>statusmapping</name>
