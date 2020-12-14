@@ -55,14 +55,12 @@ class MailServiceTest extends TestCase
 
         $mailer = new MailService($this->parentMailer, $this->renderer);
 
-        $context = $this->createMock(Context::class);
-
         $this->parentMailer->expects(self::once())
             ->method('send')
-            ->with($data, $context, $templateData)
+            ->with($data, $this->context, $templateData)
             ->willReturn($this->message);
 
-        $mailer->send($data, $context, $templateData);
+        $mailer->send($data, $this->context, $templateData);
     }
 
     public function provideDataThatSkipsRendering(): array
@@ -96,14 +94,13 @@ class MailServiceTest extends TestCase
 
         $data = ['contentHtml' => '<div>original</div>'];
         $expectedData = ['contentHtml' => '<div>original</div><div>append</div>'];
-        $context = $this->createMock(Context::class);
         $templateData = ['order' => $order];
 
         $this->parentMailer->expects(self::once())
             ->method('send')
-            ->with($expectedData, $context, $templateData)
+            ->with($expectedData, $this->context, $templateData)
             ->willReturn($this->message);
 
-        $mailer->send($data, $context, $templateData);
+        $mailer->send($data, $this->context, $templateData);
     }
 }
