@@ -7,10 +7,22 @@ Extends Shopware 6 transaction mails with a Schema.org conform HTML content
 
 ## Installation
 Require the plugin via composer
-`composer require flagbit/shopware6-transaction-mail-extender`
+```
+composer require flagbit/shopware6-transaction-mail-extender
+```
 
 Refresh the plugin list to load and see if the plugin is now available for your Shopware installation.
-`bin/console plugin:refresh`
+```
+bin/console plugin:refresh
+```
 
-If the plugin is known, install and activate the plugin
-`bin/console plugin:install --activate --clearCache TransactionMailExtender`
+If the plugin is listed, install and activate the plugin
+```
+bin/console plugin:install --activate --clearCache TransactionMailExtender
+```
+
+In case this isn't already part of an automated process, re-build the components
+
+```
+./psh.phar administration:build
+```
