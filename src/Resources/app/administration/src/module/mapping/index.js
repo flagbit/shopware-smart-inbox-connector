@@ -67,17 +67,36 @@ Shopware.Component.register('eins-und-eins-config-mapping', {
             this.setStateValue(key, selectedValue);
         },
 
+        /**
+         * @TODO Improve data handling for this component
+         * @return object
+         */
         getStateValues() {
-            // TODO Improve data handling for this component
-            return this.$parent.$parent.$parent.actualConfigData.null[this.$attrs.name] || {};
+            const config = this.$parent.$parent.$parent.actualConfigData;
+
+            if (config) {
+                return config.null[this.$attrs.name] || {};
+            }
+
+            return this.$parent.$parent.$parent.$parent.actualConfigData.null[this.$attrs.name] || {};
         },
 
+        /**
+         * @TODO Improve data handling for this component
+         * @param {string} key
+         * @param {string} state
+         */
         setStateValue(key, state) {
             const stateConfig = this.getStateValues();
             stateConfig[key] = state;
 
-            // TODO Improve data handling for this component
-            this.$parent.$parent.$parent.actualConfigData.null[this.$attrs.name] = stateConfig;
+            if (this.$parent.$parent.$parent.actualConfigData) {
+                this.$parent.$parent.$parent.actualConfigData.null[this.$attrs.name] = stateConfig;
+
+                return;
+            }
+
+            this.$parent.$parent.$parent.$parent.actualConfigData.null[this.$attrs.name] = stateConfig;
         },
     },
 
