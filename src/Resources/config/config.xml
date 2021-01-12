@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>1&amp;1 Transaction Mail Extender</title>
+        <title lang="de-DE">1&amp;1 Transaction Mail Extender</title>
+        <input-field type="checkbox">
+            <name>enable</name>
+            <label>Enable</label>
+            <label lang="de-DE">Aktivieren</label>
+            <helpText>Enables the Schema.org HTML appendage. Please configure the possible order states below before you enable it.</helpText>
+            <helpText lang="de-DE">Aktiviert die Schema.org HTML Anfügung. Bitte stellen Sie vorher die Bestell-Status ein bevor Sie dies aktivieren.</helpText>
+        </input-field>
+        <component name="eins-und-eins-config-mapping">
+            <name>statusmapping</name>
+            <label>Schema.Org Status Mapping</label>
+            <label lang="de-DE">Schema.Org Status Mapping</label>
+        </component>
+    </card>
+</config>

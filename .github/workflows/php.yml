@@ -1,40 +1,38 @@
-name: PHP Composer
+name: PHP Tests
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  - "push"
+  - "pull_request"
 
 jobs:
-  build:
+  unittests:
 
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['7.3', '7.4']
+        php-versions: ['7.3', '7.4']
+        composer-lowest: ['', '--prefer-lowest']
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+    - name: "Setup PHP Action"
+      uses: "shivammathur/setup-php@v2"
+      with:
+        php-version: ${{ matrix.php-versions }}
 
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v2
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.os }}-php-${{ matrix.php-version }}-${{ hashFiles('**/composer.json') }}
         restore-keys: |
           ${{ runner.os }}-php-${{ matrix.php-version }}-
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: "Run code analysis"
-      run: "vendor/bin/phpstan analyse"
+      run: composer update --prefer-dist --no-progress --no-suggest ${{ matrix.composer-lowest }}
 
     - name: "Run test suite"
       run: "vendor/bin/phpunit"

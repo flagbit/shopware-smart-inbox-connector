@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults>
+            <bind id="state_machine.repository"
+                  type="service"
+                  key="Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface $stateMachineRepository" />
+        </defaults>
+
+        <service id="EinsUndEins\PluginTransactionMailExtender\Mail\MailService"
+                 decorates="Shopware\Core\Content\MailTemplate\Service\MailService"
+                 decoration-inner-name="Shopware\Core\Content\MailTemplate\Service\MailService.inner"
+        >
+            <argument type="service" id="Shopware\Core\Content\MailTemplate\Service\MailService.inner" />
+            <argument type="service" id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" />
+        </service>
+
+        <service id="EinsUndEins\PluginTransactionMailExtender\StateMapping\StateMapper" autowire="true" />
+
+        <service id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" autowire="true" />
+
+        <service alias="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer"
+                 id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\Renderer" />
+
+        <service alias="EinsUndEins\PluginTransactionMailExtender\StateMapping\StateMapper"
+                 id="EinsUndEins\PluginTransactionMailExtender\StateMapping\Mapper"/>
+    </services>
+</container>
