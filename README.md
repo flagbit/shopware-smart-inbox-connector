@@ -26,3 +26,9 @@ In case this isn't already part of an automated process, re-build the components
 ```
 ./psh.phar administration:build
 ```
+
+or for Shopware production
+
+```
+bin/build-js.sh
+```
