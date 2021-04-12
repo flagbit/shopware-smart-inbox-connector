@@ -1,4 +1,4 @@
-# 1&1 Transaction Mail Extender
+# 1&1 Shopware Smart Inbox Connector
 Extends Shopware 6 transaction mails with a Schema.org conform HTML content
 
 ## Requirements
@@ -8,7 +8,7 @@ Extends Shopware 6 transaction mails with a Schema.org conform HTML content
 ## Installation
 Require the plugin via composer
 ```
-composer require flagbit/shopware6-transaction-mail-extender
+composer require flagbit/shopware-smart-inbox-connector
 ```
 
 Refresh the plugin list to load and see if the plugin is now available for your Shopware installation.
