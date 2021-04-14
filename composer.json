@@ -1,5 +1,5 @@
 {
-    "name": "flagbit/shopware6-transaction-mail-extender",
+    "name": "flagbit/shopware-smart-inbox-connector",
     "description": "Extends Shopware 6 transaction mails with a Schema.org conform HTML content",
     "type": "shopware-platform-plugin",
     "license": "MIT",
@@ -31,8 +31,8 @@
     "extra": {
         "shopware-plugin-class": "EinsUndEins\\PluginTransactionMailExtender\\TransactionMailExtender",
         "label": {
-            "de-DE": "1&1 Transaction Mail Extender",
-            "en-GB": "1&1 Transaction Mail Extender"
+            "de-DE": "1&1 Shopware Smart Inbox Connector",
+            "en-GB": "1&1 Shopware Smart Inbox Connector"
         }
     }
 }

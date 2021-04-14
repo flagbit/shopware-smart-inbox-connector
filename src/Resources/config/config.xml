@@ -3,8 +3,8 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
 
     <card>
-        <title>1&amp;1 Transaction Mail Extender</title>
-        <title lang="de-DE">1&amp;1 Transaction Mail Extender</title>
+        <title>1&amp;1 Shopware Smart Inbox Connector</title>
+        <title lang="de-DE">1&amp;1 Shopware Smart Inbox Connector</title>
         <input-field type="checkbox">
             <name>enable</name>
             <label>Enable</label>
