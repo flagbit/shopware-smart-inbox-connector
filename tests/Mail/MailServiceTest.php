@@ -1,9 +1,9 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\Tests\Mail;
+namespace EinsUndEins\SmartInboxConnector\Tests\Mail;
 
-use EinsUndEins\PluginTransactionMailExtender\Mail\MailService;
-use EinsUndEins\PluginTransactionMailExtender\SchemaOrg\Renderer;
+use EinsUndEins\SmartInboxConnector\Mail\MailService;
+use EinsUndEins\SmartInboxConnector\SchemaOrg\Renderer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Order\OrderEntity;

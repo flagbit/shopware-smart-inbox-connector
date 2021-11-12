@@ -1,8 +1,8 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\Tests\StateMapping;
+namespace EinsUndEins\SmartInboxConnector\Tests\StateMapping;
 
-use EinsUndEins\PluginTransactionMailExtender\StateMapping\StateMapper;
+use EinsUndEins\SmartInboxConnector\StateMapping\StateMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
@@ -28,7 +28,7 @@ class StateMapperTest extends TestCase
         $this->config = $this->createMock(SystemConfigService::class);
         $this->config->expects(self::once())
             ->method('get')
-            ->with('TransactionMailExtender.config.statusmapping')
+            ->with('MailMSmartInboxConnector.config.statusmapping')
             ->willReturn([
                 'parent.state-state1' => 'state1',
                 'parent.state-state2' => 'state2',

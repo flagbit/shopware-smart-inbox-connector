@@ -10,22 +10,22 @@
                   key="Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface $stateMachineRepository" />
         </defaults>
 
-        <service id="EinsUndEins\PluginTransactionMailExtender\Mail\MailService"
+        <service id="EinsUndEins\SmartInboxConnector\Mail\MailService"
                  decorates="Shopware\Core\Content\MailTemplate\Service\MailService"
                  decoration-inner-name="Shopware\Core\Content\MailTemplate\Service\MailService.inner"
         >
             <argument type="service" id="Shopware\Core\Content\MailTemplate\Service\MailService.inner" />
-            <argument type="service" id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" />
+            <argument type="service" id="EinsUndEins\SmartInboxConnector\SchemaOrg\OrderRenderer" />
         </service>
 
-        <service id="EinsUndEins\PluginTransactionMailExtender\StateMapping\StateMapper" autowire="true" />
+        <service id="EinsUndEins\SmartInboxConnector\StateMapping\StateMapper" autowire="true" />
 
-        <service id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer" autowire="true" />
+        <service id="EinsUndEins\SmartInboxConnector\SchemaOrg\OrderRenderer" autowire="true" />
 
-        <service alias="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer"
-                 id="EinsUndEins\PluginTransactionMailExtender\SchemaOrg\Renderer" />
+        <service alias="EinsUndEins\SmartInboxConnector\SchemaOrg\OrderRenderer"
+                 id="EinsUndEins\SmartInboxConnector\SchemaOrg\Renderer" />
 
-        <service alias="EinsUndEins\PluginTransactionMailExtender\StateMapping\StateMapper"
-                 id="EinsUndEins\PluginTransactionMailExtender\StateMapping\Mapper"/>
+        <service alias="EinsUndEins\SmartInboxConnector\StateMapping\StateMapper"
+                 id="EinsUndEins\SmartInboxConnector\StateMapping\Mapper"/>
     </services>
 </container>

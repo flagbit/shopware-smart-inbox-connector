@@ -18,7 +18,7 @@ bin/console plugin:refresh
 
 If the plugin is listed, install and activate the plugin
 ```
-bin/console plugin:install --activate --clearCache TransactionMailExtender
+bin/console plugin:install --activate --clearCache MailMSmartInboxConnector
 ```
 
 In case this isn't already part of an automated process, re-build the components

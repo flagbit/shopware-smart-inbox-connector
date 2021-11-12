@@ -10,7 +10,7 @@
         bootstrap="./vendor/autoload.php">
 
     <testsuites>
-        <testsuite name="PluginTransactionMailExtender_Test">
+        <testsuite name="SmartInboxConnector_Test">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
