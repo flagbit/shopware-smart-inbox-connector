@@ -1,6 +1,6 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\DependencyInjection;
+namespace EinsUndEins\MailMSmartInboxConnector\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

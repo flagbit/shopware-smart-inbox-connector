@@ -1,8 +1,8 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\Mail;
+namespace EinsUndEins\MailMSmartInboxConnector\Mail;
 
-use EinsUndEins\SmartInboxConnector\SchemaOrg\Renderer;
+use EinsUndEins\MailMSmartInboxConnector\SchemaOrg\Renderer;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Content\MailTemplate\Service\MailServiceInterface;
 use Shopware\Core\Framework\Context;

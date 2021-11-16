@@ -21,16 +21,16 @@
     },
     "autoload": {
         "psr-4": {
-            "EinsUndEins\\SmartInboxConnector\\": "src/"
+            "EinsUndEins\\MailMSmartInboxConnector\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EinsUndEins\\SmartInboxConnector\\Tests\\": "tests/"
+            "EinsUndEins\\MailMSmartInboxConnector\\Tests\\": "tests/"
         }
     },
     "extra": {
-        "shopware-plugin-class": "EinsUndEins\\SmartInboxConnector\\MailMSmartInboxConnector",
+        "shopware-plugin-class": "EinsUndEins\\MailMSmartInboxConnector\\MailMSmartInboxConnector",
         "label": {
             "de-DE": "1&1 Shopware Smart Inbox Connector",
             "en-GB": "1&1 Shopware Smart Inbox Connector"

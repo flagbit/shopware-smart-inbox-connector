@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EinsUndEins\SmartInboxConnector;
+namespace EinsUndEins\MailMSmartInboxConnector;
 
 use Shopware\Core\Framework\Plugin;
 

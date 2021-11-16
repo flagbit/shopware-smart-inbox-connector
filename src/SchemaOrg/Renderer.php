@@ -1,6 +1,6 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\SchemaOrg;
+namespace EinsUndEins\MailMSmartInboxConnector\SchemaOrg;
 
 use Shopware\Core\Checkout\Order\OrderEntity;
 

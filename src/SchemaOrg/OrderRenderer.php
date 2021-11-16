@@ -1,8 +1,8 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\SchemaOrg;
+namespace EinsUndEins\MailMSmartInboxConnector\SchemaOrg;
 
-use EinsUndEins\SmartInboxConnector\StateMapping\Mapper;
+use EinsUndEins\MailMSmartInboxConnector\StateMapping\Mapper;
 use EinsUndEins\SchemaOrgMailBody\Model\Order;
 use EinsUndEins\SchemaOrgMailBody\Model\ParcelDelivery;
 use EinsUndEins\SchemaOrgMailBody\Renderer\OrderRenderer as SchemaOrgOrderRenderer;

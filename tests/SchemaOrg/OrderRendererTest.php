@@ -1,9 +1,9 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\Tests\Renderer;
+namespace EinsUndEins\MailMSmartInboxConnector\Tests\Renderer;
 
-use EinsUndEins\SmartInboxConnector\StateMapping\Mapper;
-use EinsUndEins\SmartInboxConnector\SchemaOrg\OrderRenderer;
+use EinsUndEins\MailMSmartInboxConnector\StateMapping\Mapper;
+use EinsUndEins\MailMSmartInboxConnector\SchemaOrg\OrderRenderer;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryCollection;
 use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryEntity;

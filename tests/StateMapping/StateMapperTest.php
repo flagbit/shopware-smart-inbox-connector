@@ -1,8 +1,8 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\Tests\StateMapping;
+namespace EinsUndEins\MailMSmartInboxConnector\Tests\StateMapping;
 
-use EinsUndEins\SmartInboxConnector\StateMapping\StateMapper;
+use EinsUndEins\MailMSmartInboxConnector\StateMapping\StateMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;

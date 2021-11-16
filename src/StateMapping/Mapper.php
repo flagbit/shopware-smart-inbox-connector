@@ -1,6 +1,6 @@
 <?php
 
-namespace EinsUndEins\SmartInboxConnector\StateMapping;
+namespace EinsUndEins\MailMSmartInboxConnector\StateMapping;
 
 use Shopware\Core\System\StateMachine\Aggregation\StateMachineState\StateMachineStateEntity;
 
