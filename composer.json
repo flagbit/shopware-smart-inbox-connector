@@ -3,6 +3,7 @@
     "description": "Extends Shopware 6 transaction mails with a Schema.org conform HTML content",
     "type": "shopware-platform-plugin",
     "license": "MIT",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Flagbit GmbH & Co KG",
@@ -11,7 +12,7 @@
     ],
     "require": {
         "php": "^7.3",
-        "shopware/core": "^6.2",
+        "shopware/core": "^6.2 <6.4",
         "flagbit/schemaorg-email-body": "^0.2.0"
     },
     "require-dev": {
@@ -20,16 +21,16 @@
     },
     "autoload": {
         "psr-4": {
-            "EinsUndEins\\PluginTransactionMailExtender\\": "src/"
+            "EinsUndEins\\MailMSmartInboxConnector\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EinsUndEins\\PluginTransactionMailExtender\\Tests\\": "tests/"
+            "EinsUndEins\\MailMSmartInboxConnector\\Tests\\": "tests/"
         }
     },
     "extra": {
-        "shopware-plugin-class": "EinsUndEins\\PluginTransactionMailExtender\\TransactionMailExtender",
+        "shopware-plugin-class": "EinsUndEins\\MailMSmartInboxConnector\\MailMSmartInboxConnector",
         "label": {
             "de-DE": "1&1 Shopware Smart Inbox Connector",
             "en-GB": "1&1 Shopware Smart Inbox Connector"

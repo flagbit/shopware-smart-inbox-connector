@@ -1,13 +1,13 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\DependencyInjection;
+namespace EinsUndEins\MailMSmartInboxConnector\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-class TransactionMailExtenderExtension extends Extension
+class MailMSmartInboxConnectorExtension extends Extension
 {
     /**
      * @param mixed[] $configs

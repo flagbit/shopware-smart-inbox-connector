@@ -1,8 +1,8 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\SchemaOrg;
+namespace EinsUndEins\MailMSmartInboxConnector\SchemaOrg;
 
-use EinsUndEins\PluginTransactionMailExtender\StateMapping\Mapper;
+use EinsUndEins\MailMSmartInboxConnector\StateMapping\Mapper;
 use EinsUndEins\SchemaOrgMailBody\Model\Order;
 use EinsUndEins\SchemaOrgMailBody\Model\ParcelDelivery;
 use EinsUndEins\SchemaOrgMailBody\Renderer\OrderRenderer as SchemaOrgOrderRenderer;
@@ -58,7 +58,7 @@ class OrderRenderer implements Renderer
 
     private function isDeactivated(): bool
     {
-        return ! (bool) $this->configService->get('TransactionMailExtender.config.enable');
+        return ! (bool) $this->configService->get('MailMSmartInboxConnector.config.enable');
     }
 
     private function getShopName(): string

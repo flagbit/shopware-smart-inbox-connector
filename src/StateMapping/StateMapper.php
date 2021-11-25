@@ -1,6 +1,6 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\StateMapping;
+namespace EinsUndEins\MailMSmartInboxConnector\StateMapping;
 
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
@@ -28,7 +28,7 @@ class StateMapper implements Mapper
     public function __construct(SystemConfigService $configService, EntityRepositoryInterface $stateMachineRepository)
     {
         $this->repository = $stateMachineRepository;
-        $this->configService = (array) ($configService->get('TransactionMailExtender.config.statusmapping') ?? []);
+        $this->configService = (array) ($configService->get('MailMSmartInboxConnector.config.statusmapping') ?? []);
     }
 
     public function getValueBy(?StateMachineStateEntity $state): string

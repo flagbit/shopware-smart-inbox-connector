@@ -1,9 +1,9 @@
 <?php
 
-namespace EinsUndEins\PluginTransactionMailExtender\Tests\Renderer;
+namespace EinsUndEins\MailMSmartInboxConnector\Tests\Renderer;
 
-use EinsUndEins\PluginTransactionMailExtender\StateMapping\Mapper;
-use EinsUndEins\PluginTransactionMailExtender\SchemaOrg\OrderRenderer;
+use EinsUndEins\MailMSmartInboxConnector\StateMapping\Mapper;
+use EinsUndEins\MailMSmartInboxConnector\SchemaOrg\OrderRenderer;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryCollection;
 use Shopware\Core\Checkout\Order\Aggregate\OrderDelivery\OrderDeliveryEntity;
@@ -119,7 +119,7 @@ class OrderRendererTest extends TestCase
         $this->config->expects(self::atLeast(1))
             ->method('get')
             ->willReturnMap([
-                ['TransactionMailExtender.config.enable', null, $returnValue],
+                ['MailMSmartInboxConnector.config.enable', null, $returnValue],
                 ['core.basicInformation.shopName', null, 'shopname'],
             ]);
     }
