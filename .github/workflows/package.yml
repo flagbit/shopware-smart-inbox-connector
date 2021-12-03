@@ -1,0 +1,52 @@
+name: "Plugin ZIP"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+env:
+  PLUGIN: "MailMSmartInboxConnector"
+
+jobs:
+  analyse:
+
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: "actions/checkout@v2"
+
+      - name: "Setup PHP Action"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.3"
+
+      - name: "Install dependencies with Composer"
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: "--prefer-dist --no-progress --no-suggest"
+
+      - name: "Remove unnecessary prod requirements from vendor dir"
+        run: "composer remove shopware/core"
+
+      - name: "Remove unnecessary dev requirements for the plugin upload"
+        run: "composer remove --dev phpunit/phpunit phpstan/phpstan"
+
+      # The package's composer.json still needs shopware/core, but not for the general autoloading
+      - name: "Re-add composer requirements for the Shopware Store"
+        run: "composer require --no-update --no-install 'shopware/core:^6.2 <6.4'"
+
+      - name: "Add autoloading"
+        run: sed -i "s#class ${{ env.PLUGIN }}#if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {\n    require_once dirname(__DIR__) . '/vendor/autoload.php';\n}\n\nclass ${{ env.PLUGIN }}#" src/${{ env.PLUGIN }}.php
+
+      - name: "Prepare files for zip file"
+        run: "mkdir -p build/${{ env.PLUGIN }} && mv src/ vendor/ composer.json build/${{ env.PLUGIN }}"
+
+      - name: "Upload zip file"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "${{ env.PLUGIN }}"
+          path: "./build/"

@@ -29,6 +29,9 @@
             "EinsUndEins\\MailMSmartInboxConnector\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "platform-check": false
+    },
     "extra": {
         "shopware-plugin-class": "EinsUndEins\\MailMSmartInboxConnector\\MailMSmartInboxConnector",
         "label": {
