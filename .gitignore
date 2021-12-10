@@ -1,5 +1,6 @@
 /composer.lock
 /build/
+/public/
 /vendor/
 
 /phpunit.xml
