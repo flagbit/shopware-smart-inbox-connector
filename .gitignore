@@ -1,7 +1,9 @@
 /composer.lock
 /build/
+/public/
 /vendor/
 
 /phpunit.xml
 /phpstan.neon
 /.phpunit.result.cache
+/yarn.lock
